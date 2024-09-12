@@ -10,14 +10,14 @@ AllPackages.push("colorv2");
 function main() {
   const tex = new TeX({ packages: AllPackages });
   const svg = new SVG({});
-  const adaptor = liteAdaptor();
-  const handler = RegisterHTMLHandler(adaptor);
-  const html = mathjax.document("", {
+  const adapter = liteAdaptor();
+  RegisterHTMLHandler(adapter);
+  const document = mathjax.document("", {
     InputJax: tex,
     OutputJax: svg,
   });
-  const node = html.convert("\\frac{10}{20} = 0.5", {});
-  const out = adaptor.outerHTML(node);
+  const node = document.convert("\\frac{10}{20} = 0.5", {});
+  const out = adapter.innerHTML(node);
   console.log(out);
 }
 
